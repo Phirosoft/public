@@ -1,0 +1,19 @@
+<v-container>
+  <v-layout wrap justify-space-around>
+    <v-flex v-for="object in objects" :key="object.num">
+      <v-card min-width="50%" max-width="100%" class="ma-2">
+        <v-card-title>{{ object.title }}</v-card-title>
+        <v-divider></v-divider>
+        <v-card-text style="white-space: pre-line; font-size: 1.2em;">
+          {{ object.text }}
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="primary" text :href="object.href" target="_blank">
+            開く
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-flex>
+  </v-layout>
+</v-container>
