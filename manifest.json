@@ -1,0 +1,16 @@
+{
+    "$schema": "https://json.schemastore.org/web-manifest-combined.json",
+    "name": "Phirosoft Homepage",
+    "short_name": "Phirosoft HP",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#fff",
+    "description": "Phirosoftホームページです",
+    "icons": [
+        {
+            "src": "assets/icon.144.png",
+            "sizes": "144x144",
+            "type": "image/png"
+        }
+    ]
+}
