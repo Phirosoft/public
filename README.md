@@ -1,11 +1,14 @@
-[Phiro Page](https://phiro1021.github.io/public)
+# [Phiro Page](https://phiro1021.github.io/public)
+
 ====
 
-Overview
+## Overview
+
   Phiroのホームページソースコードです。  
   現在、作成中。
 
 ## Description
+
 - [About Me](https://phiro1021.github.io/public/#/about)
   - Phiroについて(準備中)
 - [Work](https://phiro1021.github.io/public/#/work)
@@ -42,3 +45,8 @@ Overview
 ## SRE
 
 定期的にLighthouseの解析を行ってissueを作成する
+
+## サービスワーカ用のライブラリのインストール
+
+npm install --save-dev workbox-sw
+npm install --save-dev workbox-webpack-plugin

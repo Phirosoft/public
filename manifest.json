@@ -2,14 +2,21 @@
     "$schema": "https://json.schemastore.org/web-manifest-combined.json",
     "name": "Phirosoft Homepage",
     "short_name": "Phirosoft HP",
-    "start_url": ".",
+    "start_url": "index.html",
     "display": "standalone",
     "background_color": "#fff",
+    "theme_color": "#fff",
     "description": "Phirosoftホームページです",
     "icons": [
         {
-            "src": "assets/icon.144.png",
+            "src": "assets/maskable_icon_x144.png",
             "sizes": "144x144",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "assets/icon.512.png",
+            "sizes": "512x512",
             "type": "image/png"
         }
     ]
