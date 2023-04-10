@@ -4,8 +4,8 @@ let layouts = {};
 
 let lock = {
     object: document.getElementById('lock'),
-    set: () => { lock.object.style.display = 'block'; },
-    release: () => { lock.object.style.display = 'none'; }
+    set: () => { lock.object.style.opacity = 1; },
+    release: () => { lock.object.style.opacity = 0.01; }
 }
 
 //レイアウトターゲットの取得
@@ -70,12 +70,12 @@ const syncLayouts = async (target, ...params) => {
 
 //レイアウトの表示
 const showLayout = async (target) => {
-    layouts[target].style.display = 'block';
+    layouts[target].style.opacity = 1;
 }
 
 //レイアウトの非表示
 const hideLayout = async (target) => {
-    layouts[target].style.display = 'none';
+    layouts[target].style.opacity = 0.01;
 }
 
 //レイアウトの非表示
@@ -102,9 +102,9 @@ const switchLayout = async (target) => {
 const mainLayoutChange = (mainPageName) => {
     Array.prototype.slice.call(document.querySelectorAll('.mainPage')).forEach(page => {
         if (page.id == mainPageName) {
-            page.style.display = 'block';
+            page.style.opacity = 1;
         } else {
-            page.style.display = 'none';
+            page.style.opacity = 0.01;
         }
     });
 }

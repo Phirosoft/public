@@ -38,3 +38,7 @@ Overview
 2. cd public
 3. npm update
 4. node_modules/http-server/bin/http-server
+
+## SRE
+
+定期的にLighthouseの解析を行ってissueを作成する
