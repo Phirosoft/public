@@ -1,7 +1,7 @@
 {
     "$schema": "https://json.schemastore.org/web-manifest-combined.json",
     "name": "Phirosoft Homepage",
-    "short_name": "Phirosoft HP",
+    "short_name": "Phirosoft",
     "start_url": "index.html",
     "display": "standalone",
     "background_color": "#fff",
