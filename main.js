@@ -5,7 +5,8 @@ const init = async () => {
       headers: {
         "Content-Type": "	text/html"
       },
-      data: {}
+      data: {
+      }
     })
       .then((result) => {
         template.template = {
@@ -41,13 +42,14 @@ const init = async () => {
       drawer: true,
       overlay: false,
       dialog: false,
+      auth0: true,
     }),
     methods: {
       goBack() {
         window.history.length > 1
           ? this.$router.go(-1)
           : this.$router.push('/')
-      }
+      },
     },
     computed: {
       username() {
@@ -55,6 +57,35 @@ const init = async () => {
         return this.$route.params.username
       }
     },
+    mounted: function () {
+      let authinit = async function () {
+
+        this.auth0 = await window.auth0.createAuth0Client({
+          domain: 'dev-rhtymrmca74odbrq.us.auth0.com',
+          clientId: '0frm0WzWKy3WY5j56UuxYoOJ2brsI0w5',
+          authorizationParams: {
+            redirect_uri: window.location.origin,
+          },
+        });
+
+        let login_button = document.getElementById('login');
+        login_button.addEventListener('click', async () => {
+          await this.auth0.loginWithRedirect();
+        });
+
+        let logout_button = document.getElementById('logout');
+        logout_button.addEventListener('click', async () => {
+          await this.auth0.logout();
+        });
+        console.log(this.auth0);
+        // const redirectResult = await this.auth0.handleRedirectCallback();
+        // const user = await this.auth0.getUser();
+        // console.log(this.auth0);
+
+      }
+      authinit();
+
+    }
   }).$mount('#app')
 }
 

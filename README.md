@@ -22,7 +22,7 @@ MIT
 1. リポジトリをクローン
 2. cd public
 3. npm update
-4. node_modules/http-server/bin/http-server
+4. node_modules/http-server/bin/http-server -p 3000
 
 ## SRE
 
@@ -32,3 +32,7 @@ MIT
 
 npm install --save-dev workbox-sw
 npm install --save-dev workbox-webpack-plugin
+
+## 認証機能
+
+https://github.com/auth0/auth0-spa-js#getting-started

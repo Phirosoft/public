@@ -20,6 +20,8 @@
 </head>
 
 <body>
+  <button id="login" style="left:100px;position:absolute;z-index:100">Login</button>
+  <button id="logout" style="left:200px;position:absolute;z-index:100">Logout</button>
   <div id="app">
     <v-app>
       <v-overlay absolute :value="overlay" z-index="10" color="#FFFFFF">
@@ -27,6 +29,8 @@
       <v-app-bar app flat class="light-blue lighten-5"> <v-app-bar-nav-icon
           @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
         <v-spacer></v-spacer>
+        <button id="login" @click="this.window.console.log(auth0)">Login</button>
+        <button id="logout" @click="this.window.console.log(auth0)">Logout</button>
       </v-app-bar>
       <v-navigation-drawer app v-model="drawer">
         <v-list nav>
@@ -90,7 +94,7 @@
           </router-link>
         </v-list>
       </v-navigation-drawer>
-      <v-main app >
+      <v-main app>
         <v-container>
           <router-view></router-view>
         </v-container>
@@ -113,11 +117,39 @@
     </v-app>
   </div>
 </body>
+<script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 <script src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="./templates.js" async></script>
 <script src="./main.js" async></script>
+<script type="module">
+
+  let authinit = async function () {
+    // //with async/await
+    // const auth0 = await window.auth0.createAuth0Client({
+    //   domain: 'dev-rhtymrmca74odbrq.us.auth0.com',
+    //   clientId: '0frm0WzWKy3WY5j56UuxYoOJ2brsI0w5',
+    //   authorizationParams: {
+    //     redirect_uri: window.location.origin,
+    //   },
+    // });
+
+    // //in your callback route (<MY_CALLBACK_URL>)
+    // window.addEventListener('load', async () => {
+    //   console.log(auth0)
+    //   const redirectResult = await auth0.handleRedirectCallback();
+
+    //   //logged in. you can get the user profile like this:
+    //   const user = await auth0.getUser();
+    //   console.log(user)
+    //   console.log(await auth0.isAuthenticated())
+    // });
+
+  }
+  authinit();
+
+</script>
 
 </html>
