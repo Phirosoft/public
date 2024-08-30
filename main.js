@@ -38,7 +38,7 @@ const init = async () => {
       routes: routes
     }),
     data: () => ({
-      drawer: true,
+      drawer: false,
       overlay: false,
       dialog: false,
       items: [
@@ -92,4 +92,4 @@ const registerServiceWorker = async () => {
   }
 };
 
-registerServiceWorker();
+// registerServiceWorker();
