@@ -2,12 +2,20 @@
 <html lang="ja">
 
 <head>
-  <meta title="Phirosoft">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-152720526-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-152720526-2');
+  </script>
+  <!-- <meta http-equiv="refresh" content="1;URL=https://phirosoft.github.io/public"> -->
+  <meta title="Phiro Page">
   <meta charset="UTF-8">
-  <meta name="description" content="Phirosoftホームページ">
-  <meta name="keywords" content="Programming,game,web apps" />
-  <meta name="theme-color" content="#ffffff">
-  <title>Phirosoft</title>
+  <meta name="description" content="Phiroのホームページ">
+  <meta name="keywords" content="Programming,game,web apps,Vue.js" />
+  <title>Phiro Page</title>
   <link rel="icon" type="image/svg+xml" href="./assets/favicon.128.png" />
   <link rel="apple-touch-icon" type="image/svg+xml" sizes="180x180" href="./assets/loading.svg">
   <link rel="icon" type="image/svg+xml" sizes="192x192" href="./assets/loading.svg">
@@ -15,10 +23,128 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2, minimal-ui">
-  <link rel="manifest" href="manifest.json" crossorigin="use-credentials">
-  <meta name="google-site-verification" content="q19M_nLWQPxPG9Bd9K41Ir1_1YDdaC-mv6LP8aeNb6s" />
-  <meta name="google-site-verification" content="sBojhN8we7eWUL99sTW--Z_AD2LWhkZrMwAo4vO7418" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <style>
+    html body {
+      margin: 0;
+      padding: 0;
+    }
+
+    #splash {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: bunishing 2s ease-out forwards;
+      background-color: white;
+      position: fixed;
+      z-index: 10;
+      top: 0px;
+    }
+
+    @keyframes bunishing {
+      0% {
+        opacity: 1;
+      }
+
+      90% {
+        opacity: 1;
+        transform: scale(1.0);
+      }
+
+      100% {
+        opacity: 0;
+        transform: scale(0);
+      }
+    }
+
+    #logo {
+      filter: invert(100%) blur(5px);
+      animation: insert 0.5s ease-in-out forwards, awaylogin 1s ease-out forwards;
+    }
+
+    @keyframes insert {
+      0% {
+        filter: invert(100%) blur(5px);
+        opacity: 0;
+        width: 100%;
+      }
+
+      100% {
+        filter: invert(0%) blur(0px);
+        opacity: 1;
+        width: 50%;
+        transform: translateY(-30px);
+      }
+    }
+
+    @keyframes awaylogin {
+      0% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(0);
+      }
+
+      80% {
+        transform: translateY(-50px);
+      }
+
+      100% {
+        transform: translateY(-45px);
+      }
+    }
+
+    #login_form {
+      position: absolute;
+      transform: translateY(30px);
+      animation: showlogin 1.5s ease-out forwards;
+
+    }
+
+    #login_button {
+      border-radius: 20px;
+      width: 40px;
+      height: 40px;
+      font-size: 1.5rem;
+      border: none;
+      color: white;
+      background-color: black;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      --padding-x: 1.2em;
+      border-color: transparent;
+    }
+
+    #password {
+      width: 180px;
+      height: 30px;
+      font-size: 1.5rem;
+      padding-top: 10px;
+      padding-left: 10px;
+      border-radius: 10px;
+      /* border-color: gray; */
+      border-style: none;
+      background-color: #e1f5fe;
+      box-shadow: 1px 1px 1px gray;
+    }
+
+    @keyframes showlogin {
+      0% {
+        opacity: 0;
+      }
+
+      60% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -26,27 +152,85 @@
     <v-app>
       <v-overlay absolute :value="overlay" z-index="10" color="#FFFFFF">
       </v-overlay>
-      <v-app-bar app flat class="light-blue lighten-5"> <v-app-bar-nav-icon
-          @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-app-bar app flat class="light-blue lighten-5">
         <v-spacer></v-spacer>
+        <v-menu left bottom>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn icon v-bind="attrs" v-on="on">
+              <v-icon>mdi-dots-vertical</v-icon>
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-item v-for="n in 5" :key="n" @click="() => {}">
+              <v-list-item-title>Option {{ n }}</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
       </v-app-bar>
-      <v-navigation-drawer app v-model="drawer">
-        <v-list nav>
-          <div v-for="item,key in items">
-            <router-link :to="item.to" style="text-decoration: none; color: inherit;">
-              <v-list-item>
-                <v-list-item-icon>
-                  <v-icon>{{ item.icon }}</v-icon>
-                </v-list-item-icon>
-                <v-list-item-title>{{ item.text }}</v-list-item-title>
-              </v-list-item>
-            </router-link>
-            <v-divider v-if="key < 1"></v-divider>
-          </div>
+      <v-navigation-drawer app permanent expand-on-hover touchless z-index="100">
+        <v-list nav dense>
+          <router-link to="/about" style="text-decoration: none; color: inherit;">
+            <v-list-item>
+              <v-list-item-icon>
+                <v-icon>mdi-alert-circle-outline</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>ABOUT ME</v-list-item-title>
+            </v-list-item>
+          </router-link>
+          <v-divider></v-divider>
+          <router-link to="/work" style="text-decoration: none; color: inherit;">
+            <v-list-item>
+              <v-list-item-icon>
+                <v-icon>mdi-home-city-outline</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>WORK</v-list-item-title>
+            </v-list-item>
+          </router-link>
+          <router-link to="/game" style="text-decoration: none; color: inherit;">
+            <v-list-item>
+              <v-list-item-icon>
+                <v-icon>mdi-gamepad-variant-outline</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>GAME</v-list-item-title>
+            </v-list-item>
+          </router-link>
+          <router-link to="/tool" style="text-decoration: none; color: inherit;">
+            <v-list-item>
+              <v-list-item-icon>
+                <v-icon>mdi-toolbox-outline</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>TOOL</v-list-item-title>
+            </v-list-item>
+          </router-link>
+          <router-link to="/movie" style="text-decoration: none; color: inherit;">
+            <v-list-item>
+              <v-list-item-icon>
+                <v-icon>mdi-video-vintage</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>MOVIE</v-list-item-title>
+            </v-list-item>
+          </router-link>
+          <router-link to="/blog" style="text-decoration: none; color: inherit;">
+            <v-list-item>
+              <v-list-item-icon>
+                <v-icon>mdi-book-open-outline</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>BLOG</v-list-item-title>
+            </v-list-item>
+            <v-divider></v-divider>
+          </router-link>
+          <router-link to="/help" style="text-decoration: none; color: inherit;">
+            <v-list-item>
+              <v-list-item-icon>
+                <v-icon>mdi-help-circle-outline</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>HELP</v-list-item-title>
+            </v-list-item>
+          </router-link>
         </v-list>
       </v-navigation-drawer>
-      <v-main app>
-        <v-container>
+      <v-main>
+        <v-container fluid>
           <router-view></router-view>
         </v-container>
       </v-main>
@@ -66,6 +250,13 @@
         </v-card-text>
       </v-footer>
     </v-app>
+  </div>
+  <div id="splash">
+    <img id="logo" src="../assets/logo.png">
+    <div id="login_form">
+      <input type="button" id="login_button" value=">">
+      <input type="text" id="password" placeholder="Password" value="********">
+    </div>
   </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
