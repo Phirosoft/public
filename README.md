@@ -10,6 +10,8 @@
 
 - 開発フレームワーク
   - Vue.js
+  - Bootstrap
+  - Material Font
 
 ## Licence
 
