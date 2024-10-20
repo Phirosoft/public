@@ -23,12 +23,13 @@ html body {
 }
 
 main {
-  background-color: white;
-  background-image: url("../assets/logo.png");
+  /* background-color: white; */
+  /* background-image: url("../assets/logo.png"); */
   background-position: center;
   background-repeat: no-repeat;
   background-size: 50%;
   padding-bottom: var(--base-footer-height);
+  z-index: 2;
 }
 
 aside {
