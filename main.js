@@ -44,7 +44,7 @@ const init = async () => {
       items: [
         { to: "/about", icon: "mdi-alert-circle-outline", text: "ABOUT ME" },
         { to: "/blog", icon: "mdi-book-open-outline", text: "BLOG" },
-        { to: "/schedule", icon: "mdi-home-city-outline", text: "SCHEDUL" },
+        // { to: "/schedule", icon: "mdi-home-city-outline", text: "SCHEDUL" },
         { to: "/work", icon: "mdi-home-city-outline", text: "WORK" },
         { to: "/movie", icon: "mdi-video-vintage", text: "MOVIE" },
         { to: "/game", icon: "mdi-gamepad-variant-outline", text: "GAME" },

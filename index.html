@@ -129,10 +129,22 @@
 
 <body>
   <div class="mermaid gitGraph">
-    gitGraph
+    ---
+    config:
+    theme: default
+    themeVariables:
+    git0: "#6610f2"
+    git1: "#fd7e14"
+    git2: "#ffc107"
+    git3: "#0d6efd"
+    git4: "#20c997"
+    git5: "#0dcaf0"
+    git6: "#e35d6a"
+    ---
+    gitGraph LR:
     checkout main
     commit
-    commit id:"atelierent.jp"
+    commit type: HIGHLIGHT id:"atelierent.jp"
     branch work
     checkout work
     commit id:"Game Development"
@@ -158,7 +170,7 @@
     merge game
     checkout main
     merge work
-    commit id:"Phirosoft"
+    commit type: HIGHLIGHT id:"Phirosoft"
     checkout work
     commit id:"IoT Development"
     commit
@@ -234,7 +246,13 @@
           <v-btn class="mx-4" icon link href="https://atelierent.jp/" target="_blank">
             <v-icon size="24px"> mdi-web </v-icon>
           </v-btn>
-        </v-card-text>
+          <v-btn class="mx-4" icon link href="https://youtube.com/@phirotube9236?si=xEZbYiFMy8TKO8Cn" target="_blank">
+            <v-icon size="24px"> mdi-youtube </v-icon>
+          </v-btn>
+          <v-btn class="mx-4" icon link href="https://www.lancers.jp/profile/phirosoft" target="_blank">
+            <v-icon size="24px"> mdi-domain </v-icon>
+          </v-btn>
+                </v-card-text>
       </v-footer>
     </v-app>
   </div>

@@ -194,11 +194,11 @@ let templates = [
             text: `技術に関する内容の記事です。`,
             href: 'https://qiita.com/phiro1021'
           },
-          // {
-          //   title: 'Note',
-          //   text: `経営に関する内容`,
-          //   href: 'https://note.com/phiro1021'
-          // },
+          {
+            title: 'Note',
+            text: `Python開発や経営に関する内容です。`,
+            href: 'https://note.com/phirosoft'
+          },
         ]).map((e, i) => ({
           num: i + 1,
           title: e.title,
