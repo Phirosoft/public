@@ -1,5 +1,49 @@
 {
+  "name": "phirosoft-website",
+  "version": "1.0.0",
+  "description": "Phirosoft公式ホームページ - Vue.js SPA",
+  "main": "main.js",
+  "homepage": "https://phirosoft.github.io/public",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/phirosoft/public.git"
+  },
+  "keywords": [
+    "vue",
+    "spa",
+    "website",
+    "phirosoft",
+    "portfolio"
+  ],
+  "author": "Phirosoft",
+  "license": "MIT",
+  "scripts": {
+    "dev": "http-server public -p 8080 -c-1",
+    "start": "npm run dev",
+    "serve": "http-server public -p 8080",
+    "build": "echo 'Static site - no build process required'",
+    "deploy": "echo 'Deployment handled by GitHub Actions'",
+    "test": "echo 'No tests specified yet'",
+    "audit": "npm audit",
+    "audit:fix": "npm audit fix",
+    "lighthouse": "lighthouse http://localhost:8080 --view",
+    "lighthouse:ci": "lhci autorun",
+    "lighthouse:desktop": "lighthouse http://localhost:8080 --preset=desktop --view",
+    "lighthouse:mobile": "lighthouse http://localhost:8080 --preset=perf --view",
+    "performance:check": "npm run dev & sleep 10 && npm run lighthouse:ci"
+  },
   "devDependencies": {
-    "http-server": "^14.1.1"
-  }
+    "http-server": "^14.1.1",
+    "@lhci/cli": "^0.12.0",
+    "lighthouse": "^11.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
 }
