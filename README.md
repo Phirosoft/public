@@ -2,7 +2,8 @@
 
 [![Website](https://img.shields.io/website?url=https%3A//phirosoft.github.io/public)](https://phirosoft.github.io/public)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Security](https://img.shields.io/badge/Security-Critical_Issue-red)](./DEVELOPMENT.md#セキュリティ)
+[![Security](https://img.shields.io/badge/Security-Secure-green)](./DEVELOPMENT.md#セキュリティ)
+[![Dependencies](https://img.shields.io/badge/Dependencies-Up_to_Date-brightgreen)](#dependencies)
 
 > 🌐 **Live Site**: https://phirosoft.github.io/public
 
@@ -46,7 +47,24 @@ npm run dev
     └── workflows/    # GitHub Actions
 ```
 
-## 🔗 関連文書
+## � 依存関係・ツール {#dependencies}
+
+### 開発・デプロイツール
+
+| ツール | バージョン | 用途 |
+|--------|------------|------|
+| **Node.js** | ≥16.0.0 | 開発環境 |
+| **http-server** | ^14.1.1 | ローカル開発サーバー |
+| **Lighthouse** | ^12.8.1 | パフォーマンス測定 |
+| **Lighthouse CI** | ^0.15.1 | 自動品質チェック |
+
+### 🔒 セキュリティ状況
+
+- ✅ **脆弱性**: 0個（2025年1月9日時点）
+- ✅ **Dependabot**: すべてのアラート解決済み
+- ✅ **依存関係**: 最新の安全なバージョンに更新済み
+
+## �🔗 関連文書
 
 ## 🤝 コントリビューション・サポート
 
@@ -62,4 +80,5 @@ npm run dev
 ---
 
 **⚠️ セキュリティ重要事項**: 現在 `docs/scripts/base.js` にハードコードされたパスワードが存在します。[DEVELOPMENT.md](./DEVELOPMENT.md#セキュリティ) を確認して修正してください。
+
 - 📧 その他のお問い合わせ: [Contact](https://phirosoft.github.io/public/#/about)

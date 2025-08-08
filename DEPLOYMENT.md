@@ -128,18 +128,26 @@ jobs:
     - run: npm audit --audit-level=high
 ```
 
-### Lighthouse CI
+### Lighthouse CI（最新版対応）
 
 **ファイル**: `.github/workflows/lighthouse.yml`
 
 ```yaml
-name: Lighthouse CI
+name: 📊 Lighthouse Performance Monitoring
 
 on:
   push:
     branches: [ main ]
+    paths:
+      - 'docs/**'
+      - '.github/workflows/lighthouse.yml'
   pull_request:
     branches: [ main ]
+    paths:
+      - 'docs/**'
+  schedule:
+    # 毎日午前9時（JST）に実行
+    - cron: '0 0 * * *'
 
 jobs:
   lighthouse:
@@ -148,6 +156,50 @@ jobs:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
       with:
+        node-version: '18'
+        cache: 'npm'
+    - run: npm ci
+    - run: npm install -g @lhci/cli@0.15.x
+    - run: lhci autorun
+      env:
+        LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+```
+
+### 品質・セキュリティチェック
+
+**ファイル**: `.github/workflows/quality-check.yml`
+
+```yaml
+name: 🔍 Security and Quality Checks
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    # 毎週月曜日に実行
+    - cron: '0 0 * * 1'
+
+jobs:
+  security-audit:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+    - run: npm ci
+    - run: npm audit --audit-level=moderate
+```
+
+### ワークフロー最適化 🚀
+
+各ワークフローは効率化のため、以下のパス制限を適用：
+
+- **deploy.yml & lighthouse.yml**: `docs/` フォルダ変更時のみ実行
+- **quality-check.yml**: すべての変更で実行（セキュリティ監視）
         node-version: '18'
     - run: npm ci
     - run: npm install -g @lhci/cli
@@ -207,6 +259,21 @@ git push origin main
    - パフォーマンス確認
 
 ## 🛠️ 環境設定
+
+### 必須ツール・バージョン
+
+| ツール | バージョン | 目的 |
+|--------|------------|------|
+| **Node.js** | ≥16.0.0 | 開発環境・CI/CD |
+| **npm** | ≥8.0.0 | パッケージ管理 |
+| **@lhci/cli** | 0.15.1 | Lighthouse CI（最新版） |
+| **lighthouse** | 12.8.1 | パフォーマンス測定（最新版） |
+
+### 依存関係の状況
+
+- ✅ **脆弱性**: 0個（2025年1月9日時点）
+- ✅ **Dependabot**: すべてのアラート解決済み
+- ✅ **パッケージ**: 最新の安全なバージョンに更新済み
 
 ### 開発環境変数
 
