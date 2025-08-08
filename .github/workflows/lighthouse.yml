@@ -3,8 +3,14 @@ name: 📊 Lighthouse Performance Monitoring
 on:
   push:
     branches: [ main ]
+    paths:
+      - 'docs/**'
+      - '.github/workflows/lighthouse.yml'
   pull_request:
     branches: [ main ]
+    paths:
+      - 'docs/**'
+      - '.github/workflows/lighthouse.yml'
   schedule:
     # 毎日午前9時（JST）に実行してパフォーマンスを監視
     - cron: '0 0 * * *'
