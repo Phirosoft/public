@@ -46,7 +46,7 @@ npx http-server public -p 8080
 このプロジェクトは静的サイトのため、ビルドプロセスは不要です。
 
 #### 🚀 GitHub Pages 自動デプロイ
-- **デプロイ対象**: `public/` フォルダの内容のみ
+- **デプロイ対象**: `docs/` フォルダの内容のみ
 - **トリガー**: `main` ブランチへのpush時に自動実行
 - **設定**: GitHub Actions (`deploy.yml`) で管理
 
@@ -55,7 +55,7 @@ npx http-server public -p 8080
 ## 📁 プロジェクト構成
 
 ```text
-├── public/               # 🌐 公開コンテンツ
+├── docs/                 # 🌐 公開コンテンツ
 │   ├── index.html       #   メインHTMLファイル
 │   ├── main.js          #   アプリケーションエントリーポイント
 │   ├── templates.js     #   Vue.jsテンプレート定義

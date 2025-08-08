@@ -2,7 +2,7 @@ module.exports = {
   ci: {
     collect: {
       // 静的サイトのルートディレクトリ
-      staticDistDir: './public',
+      staticDistDir: './docs',
       // テスト対象のURL（相対パス）
       url: [
         'http://localhost:8080/',

@@ -2,7 +2,7 @@
 
 ## 📋 設定概要
 
-このリポジトリは **GitHub Actions** を使用して、`public/` フォルダの内容を **GitHub Pages** に自動デプロイします。
+このリポジトリは **GitHub Actions** を使用して、`docs/` フォルダの内容を **GitHub Pages** に自動デプロイします。
 
 ## 🔧 デプロイ設定
 
@@ -14,7 +14,7 @@
 ### 自動デプロイ
 - **トリガー**: `main` ブランチへの push
 - **手動実行**: Actions タブから `workflow_dispatch` で実行可能
-- **デプロイ対象**: `public/` フォルダの内容のみ
+- **デプロイ対象**: `docs/` フォルダの内容のみ
 
 ## 🎯 デプロイフロー
 
@@ -22,7 +22,7 @@
 graph LR
     A[main ブランチに push] --> B[GitHub Actions 起動]
     B --> C[依存関係インストール]
-    C --> D[public/ フォルダをアーティファクト化]
+    C --> D[docs/ フォルダをアーティファクト化]
     D --> E[GitHub Pages にデプロイ]
     E --> F[サイト公開]
 ```
@@ -36,7 +36,7 @@ graph LR
 ## 📁 デプロイ対象ファイル
 
 ```
-public/
+docs/
 ├── index.html          # メインページ
 ├── main.js            # Vue.jsアプリケーション
 ├── templates.js       # Vueテンプレート
@@ -81,7 +81,7 @@ concurrency:
 3. **permissions** が正しく設定されているか確認
 
 ### よくある問題
-- **404エラー**: `index.html` が `public/` にあるか確認
+- **404エラー**: `index.html` が `docs/` にあるか確認
 - **CSS/JS読み込みエラー**: 相対パスが正しいか確認
 - **権限エラー**: リポジトリ設定でActionsの権限を確認
 
@@ -99,7 +99,7 @@ concurrency:
 ## 🔄 更新フロー
 
 ### 通常の更新
-1. `public/` フォルダ内のファイルを編集
+1. `docs/` フォルダ内のファイルを編集
 2. `git add . && git commit -m "update"`
 3. `git push origin main`
 4. GitHub Actions が自動実行
@@ -112,7 +112,7 @@ concurrency:
 ## 📅 履歴
 
 - **2025-08-09**: GitHub Actions デプロイ設定
-- **2025-08-09**: public/ フォルダ構成変更
+- **2025-08-09**: docs/ フォルダ構成変更（public/ から変更）
 
 ---
 

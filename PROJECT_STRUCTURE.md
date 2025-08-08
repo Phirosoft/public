@@ -2,9 +2,9 @@
 
 ## 🌐 新しいフォルダ構成
 
-### 公開用ファイル (`/public/`)
+### 公開用ファイル (`/docs/`)
 ```
-public/
+docs/
 ├── index.html          # メインページ
 ├── main.js            # Vue.jsアプリケーション
 ├── templates.js       # Vueテンプレート定義
@@ -43,20 +43,20 @@ public/
 4. **保守性向上**: 開発者が作業しやすい構成
 
 ### 🔧 技術的変更
-- **HTTP Server**: `public` フォルダをルートディレクトリに設定
-- **Lighthouse CI**: 静的サイトディレクトリを `./public` に変更
-- **GitHub Pages**: 将来的に `public` フォルダのみをデプロイ対象に設定可能
+- **HTTP Server**: `docs` フォルダをルートディレクトリに設定
+- **Lighthouse CI**: 静的サイトディレクトリを `./docs` に変更
+- **GitHub Pages**: `docs` フォルダのみをデプロイ対象に設定
 
 ## 🚀 開発フロー
 
 ### ローカル開発
 ```bash
-npm run dev  # public フォルダでサーバー起動
+npm run dev  # docs フォルダでサーバー起動
 ```
 
 ### 本番デプロイ
-- GitHub Pages: `public` フォルダのみを対象
-- CDN/サーバー: `public` フォルダの内容をアップロード
+- GitHub Pages: `docs` フォルダのみを対象
+- CDN/サーバー: `docs` フォルダの内容をアップロード
 
 ## 📝 注意事項
 
@@ -67,7 +67,7 @@ npm run dev  # public フォルダでサーバー起動
 
 ## 🔄 今後の改善予定
 
-- [ ] GitHub Pagesのデプロイ設定を `public` フォルダに変更
+- [ ] GitHub Pagesのデプロイ設定を `docs` フォルダに変更
 - [ ] CDNキャッシュ最適化
 - [ ] ビルドプロセスの導入検討（圧縮・最適化）
 

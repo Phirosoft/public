@@ -18,9 +18,9 @@
   "author": "Phirosoft",
   "license": "MIT",
   "scripts": {
-    "dev": "http-server public -p 8080 -c-1",
+    "dev": "http-server docs -p 8080 -c-1",
     "start": "npm run dev",
-    "serve": "http-server public -p 8080",
+    "serve": "http-server docs -p 8080",
     "build": "echo 'Static site - no build process required'",
     "deploy": "echo 'Deployment handled by GitHub Actions'",
     "test": "echo 'No tests specified yet'",
