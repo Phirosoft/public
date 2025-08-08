@@ -43,7 +43,7 @@ jobs:
         LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
 
     - name: Upload Lighthouse results
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       if: always()
       with:
         name: lighthouse-results
@@ -104,7 +104,7 @@ jobs:
         echo "| PWA | ${pwa}% |" >> $GITHUB_STEP_SUMMARY
 
     - name: Upload Desktop results
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: lighthouse-desktop-results
         path: lighthouse-desktop.*
@@ -161,7 +161,7 @@ jobs:
         echo "| PWA | ${pwa}% |" >> $GITHUB_STEP_SUMMARY
 
     - name: Upload Mobile results
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: lighthouse-mobile-results
         path: lighthouse-mobile.*
@@ -174,7 +174,7 @@ jobs:
 
     steps:
     - name: Download all artifacts
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
 
     - name: Generate performance report
       run: |
