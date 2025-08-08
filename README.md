@@ -2,114 +2,64 @@
 
 [![Website](https://img.shields.io/website?url=https%3A//phirosoft.github.io/public)](https://phirosoft.github.io/public)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Security](https://img.shields.io/badge/Security-Critical_Issue-red)](./DEVELOPMENT.md#セキュリティ)
 
-> 🌐 [Live Site](https://phirosoft.github.io/public)
+> 🌐 **Live Site**: https://phirosoft.github.io/public
 
 ## 📖 概要
 
-Phirosoft公式ホームページのソースコードです。GitHub Pagesを通して公開されているシングルページアプリケーション（SPA）です。
+Phirosoft公式ホームページ - Vue.js 2.x で構築されたシングルページアプリケーション（SPA）
 
-## 🛠️ 技術スタック
+### 🛠️ 技術スタック
 
-- **フロントエンド**: Vue.js 2.x
-- **UIフレームワーク**: Vuetify + Bootstrap
-- **アイコン**: Material Design Icons
-- **ルーティング**: Vue Router
-- **HTTP通信**: Axios
-- **デプロイ**: GitHub Pages
+| 技術分野 | 使用技術 |
+|---------|---------|
+| **フロントエンド** | Vue.js 2.x, Vuetify, Bootstrap |
+| **ルーティング** | Vue Router |
+| **HTTP通信** | Axios |
+| **デプロイ** | GitHub Pages (自動デプロイ) |
 
-## 🚀 開発環境のセットアップ
-
-### 必要な環境
-
-- Node.js (推奨: v16以上)
-- npm
-
-### ローカル開発
+## 🚀 クイックスタート
 
 ```bash
-# 1. リポジトリをクローン
+# 1. リポジトリクローン
 git clone https://github.com/phirosoft/public.git
 cd public
 
-# 2. 依存関係をインストール
+# 2. 依存関係インストール
 npm install
 
-# 3. 開発サーバーを起動（publicフォルダをルートとして）
+# 3. 開発サーバー起動
 npm run dev
-# または
-npx http-server public -p 8080
+# → http://localhost:8080 でアクセス
 ```
 
-### ビルドとデプロイ
+## 📁 プロジェクト構造
 
-このプロジェクトは静的サイトのため、ビルドプロセスは不要です。
-
-#### 🚀 GitHub Pages 自動デプロイ
-- **デプロイ対象**: `docs/` フォルダの内容のみ
-- **トリガー**: `main` ブランチへのpush時に自動実行
-- **設定**: GitHub Actions (`deploy.yml`) で管理
-
-詳細は [DEPLOY.md](./DEPLOY.md) をご確認ください。
-
-## 📁 プロジェクト構成
-
-```text
-├── docs/                 # 🌐 公開コンテンツ
-│   ├── index.html       #   メインHTMLファイル
-│   ├── main.js          #   アプリケーションエントリーポイント
-│   ├── templates.js     #   Vue.jsテンプレート定義
-│   ├── LICENSE          #   ライセンスファイル
-│   ├── assets/          #   静的アセット（画像、アイコン）
-│   ├── component/       #   Vueコンポーネント（HTML）
-│   ├── scripts/         #   JavaScript ユーティリティ
-│   └── styles/          #   スタイルシート
-├── .github/             # 🔧 GitHub設定
-├── node_modules/        # 📦 依存関係
-├── package.json         # 📄 プロジェクト設定
-├── lighthouserc.js      # 🚦 Lighthouse設定
-├── README.md            # 📖 このファイル
-├── CONTRIBUTING.md      # 🤝 開発ガイドライン
-├── SECURITY.md          # 🔒 セキュリティポリシー
-└── TODO.md              # 📋 タスク管理
+```
+├── docs/              # 🌐 GitHub Pages公開コンテンツ
+│   ├── index.html    # メインページ
+│   ├── main.js       # Vue.jsアプリケーション
+│   ├── templates.js  # Vueテンプレート
+│   └── assets/       # 静的アセット
+└── .github/          # 🔧 CI/CD設定
+    └── workflows/    # GitHub Actions
 ```
 
-## 🔒 セキュリティ注意事項
+## 🔗 関連文書
 
-⚠️ **重要**: このリポジトリは公開されています。以下の点にご注意ください：
+## 🤝 コントリビューション・サポート
 
-- APIキー、パスワード、秘密鍵などの機密情報をコミットしないでください
-- 現在 `scripts/base.js` にハードコードされたパスワードが含まれています（要修正）
-- 本番環境では適切な環境変数管理を実装してください
-
-## 🐛 既知の問題・課題
-
-詳細は [TODO.md](./TODO.md) をご確認ください。
-
-## 📊 品質管理
-
-### SRE（Site Reliability Engineering）
-
-- 定期的にLighthouseの解析を実施
-- パフォーマンス改善のためのissueを自動作成
-- アクセシビリティとSEOの監視
-
-### 推奨ツール
-
-- Lighthouse CI
-- Web Vitals
-- WAVE（アクセシビリティ）
-
-## 🤝 コントリビューション
-
-コントリビューションを歓迎します！詳細は [CONTRIBUTING.md](./CONTRIBUTING.md) をご確認ください。
+- 📚 **開発ガイド**: [DEVELOPMENT.md](./DEVELOPMENT.md)
+- 🚀 **デプロイガイド**: [DEPLOYMENT.md](./DEPLOYMENT.md)
+- 🐛 **バグ報告**: [GitHub Issues](https://github.com/phirosoft/public/issues)
+- 💡 **機能提案**: [GitHub Issues](https://github.com/phirosoft/public/issues)
 
 ## 📄 ライセンス
 
-[MIT License](./LICENSE) - 詳細は LICENSEファイルをご確認ください。
+[MIT License](./docs/LICENSE) - 自由に使用・改変・配布可能です。
 
-## 📞 サポート
+---
 
-- 🐛 バグ報告: [Issues](https://github.com/phirosoft/public/issues)
-- 💡 機能提案: [Issues](https://github.com/phirosoft/public/issues)
+**⚠️ セキュリティ重要事項**: 現在 `docs/scripts/base.js` にハードコードされたパスワードが存在します。[DEVELOPMENT.md](./DEVELOPMENT.md#セキュリティ) を確認して修正してください。
 - 📧 その他のお問い合わせ: [Contact](https://phirosoft.github.io/public/#/about)
