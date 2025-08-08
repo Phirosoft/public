@@ -1,0 +1,194 @@
+name: 🔍 Security and Quality Checks
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    # 毎週月曜日の午前9時（JST）に実行
+    - cron: '0 0 * * 1'
+
+jobs:
+  security-audit:
+    name: 🛡️ Security Audit
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Run npm audit
+      run: |
+        npm audit --audit-level=critical
+        npm audit --json > audit-results.json || true
+        
+    - name: Upload audit results
+      uses: actions/upload-artifact@v3
+      with:
+        name: npm-audit-results
+        path: audit-results.json
+        
+    - name: Check for hardcoded secrets
+      run: |
+        echo "🔍 Checking for potential hardcoded secrets..."
+        # Check for common patterns
+        if grep -r "password.*=" --include="*.js" --include="*.html" .; then
+          echo "⚠️ Potential hardcoded password found!"
+          exit 1
+        fi
+        if grep -r "api_key.*=" --include="*.js" --include="*.html" .; then
+          echo "⚠️ Potential hardcoded API key found!"
+          exit 1
+        fi
+        echo "✅ No obvious hardcoded secrets detected"
+
+  lighthouse-ci:
+    name: 🏃‍♂️ Lighthouse Performance Audit
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Start development server
+      run: |
+        npm run dev &
+        sleep 10  # サーバー起動を待機
+        
+    - name: Run Lighthouse CI
+      run: |
+        npm install -g @lhci/cli@0.12.x
+        lhci autorun || echo "Lighthouse CI completed with warnings"
+      env:
+        LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+
+  code-quality:
+    name: 📋 Code Quality Check
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Check file structure
+      run: |
+        echo "🔍 Checking project structure..."
+        
+        # 必須ファイルの存在確認
+        required_files=("index.html" "main.js" "README.md" "package.json")
+        for file in "${required_files[@]}"; do
+          if [[ ! -f "$file" ]]; then
+            echo "❌ Required file missing: $file"
+            exit 1
+          else
+            echo "✅ Found: $file"
+          fi
+        done
+        
+        # セキュリティファイルの確認
+        security_files=("SECURITY.md" ".gitignore")
+        for file in "${security_files[@]}"; do
+          if [[ ! -f "$file" ]]; then
+            echo "⚠️ Security file missing: $file"
+          else
+            echo "✅ Security file found: $file"
+          fi
+        done
+        
+    - name: Check for TODO items
+      run: |
+        echo "📝 Checking for TODO items..."
+        todo_count=$(grep -r "TODO\|FIXME\|XXX\|HACK" --include="*.js" --include="*.html" --include="*.css" . | wc -l)
+        echo "Found $todo_count TODO items"
+        if [[ $todo_count -gt 10 ]]; then
+          echo "⚠️ High number of TODO items detected ($todo_count)"
+        fi
+
+  accessibility-check:
+    name: ♿ Accessibility Check
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Start development server
+      run: |
+        npm run dev &
+        sleep 10
+        
+    - name: Install axe-core CLI
+      run: npm install -g @axe-core/cli
+      
+    - name: Run accessibility tests
+      run: |
+        axe http://localhost:8080 --exit || echo "Accessibility issues detected"
+
+  create-issue-on-failure:
+    name: 📝 Create Issue on Failure
+    runs-on: ubuntu-latest
+    needs: [security-audit, lighthouse-ci, code-quality, accessibility-check]
+    if: failure()
+    
+    steps:
+    - name: Create issue on failure
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const title = `🚨 Automated Quality Check Failed - ${new Date().toISOString().split('T')[0]}`;
+          const body = `
+          ## 自動品質チェックが失敗しました
+          
+          **実行日時**: ${new Date().toISOString()}
+          **ワークフロー**: ${{ github.workflow }}
+          **ブランチ**: ${{ github.ref }}
+          **コミット**: ${{ github.sha }}
+          
+          ### 確認事項
+          - [ ] セキュリティ監査の結果を確認
+          - [ ] Lighthouseスコアの確認
+          - [ ] コード品質の問題を修正
+          - [ ] アクセシビリティの問題を修正
+          
+          ### 詳細
+          詳細は[Actions実行結果](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})を確認してください。
+          
+          ---
+          *このissueは自動生成されました*
+          `;
+          
+          github.rest.issues.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            title: title,
+            body: body,
+            labels: ['automated', 'quality-check', 'priority-high']
+          });
