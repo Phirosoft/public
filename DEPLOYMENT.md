@@ -32,10 +32,12 @@
 
 ```text
 docs/                    # GitHub Pages デプロイフォルダ
-├── index.html          # エントリーポイント
+├── index.html          # エントリーポイント（SEO最適化済み）
 ├── main.js             # Vue.js アプリケーション
 ├── templates.js        # Vue テンプレート
 ├── LICENSE             # ライセンス
+├── sitemap.xml         # 検索エンジン用サイトマップ
+├── robots.txt          # クローラー制御ファイル
 ├── assets/             # 静的アセット
 │   ├── favicon.128.png
 │   ├── icon.*.png
@@ -232,7 +234,15 @@ npm run lint # (設定済みの場合)
 - [ ] 外部リンクが正しく機能
 - [ ] 画像・アセットが適切に表示
 - [ ] モバイル表示の確認
-- [ ] セキュリティ課題の修正（特に `docs/scripts/base.js`）
+- [ ] SEO要素の確認
+  - [ ] タイトル・メタ記述が適切
+  - [ ] Open Graph画像が表示される
+  - [ ] sitemap.xml・robots.txtが配置済み
+  - [ ] 構造化データにエラーがない
+- [ ] アクセシビリティチェック
+  - [ ] 画像にalt属性が設定済み
+  - [ ] キーボードナビゲーション動作確認
+  - [ ] スクリーンリーダー対応確認
 
 ### 3. Git操作
 

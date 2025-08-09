@@ -1,0 +1,22 @@
+User-agent: *
+Allow: /
+
+# サイトマップ
+Sitemap: https://phirosoft.github.io/public/sitemap.xml
+
+# クロール不要ファイル・ディレクトリ
+Disallow: /node_modules/
+Disallow: /*.json
+Disallow: /package.json
+Disallow: /package-lock.json
+Disallow: /.git/
+Disallow: /.github/
+Disallow: /.gitignore
+Disallow: /README.md
+Disallow: /TODO.md
+Disallow: /DEVELOPMENT.md
+Disallow: /DEPLOYMENT.md
+
+# 開発用ファイル
+Disallow: /lighthouserc.js
+Disallow: /*.code-workspace

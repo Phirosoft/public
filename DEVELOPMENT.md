@@ -195,6 +195,31 @@ var app = new Vue({
 </button>
 ```
 
+### SEO・アクセシビリティ
+
+```html
+<!-- ✅ SEO: メタデータ最適化 -->
+<title>具体的で説明的なページタイトル</title>
+<meta name="description" content="120-160文字のページ説明">
+
+<!-- ✅ Open Graph -->
+<meta property="og:title" content="ページタイトル">
+<meta property="og:description" content="ページ説明">
+<meta property="og:image" content="シェア用画像URL">
+
+<!-- ✅ 構造化データ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "ページ名"
+}
+</script>
+
+<!-- ✅ 画像最適化 -->
+<img src="image.webp" alt="具体的な代替テキスト" loading="lazy">
+```
+
 ## 🔒 セキュリティ
 
 ### 🚨 緊急修正が必要な問題

@@ -2,20 +2,50 @@
 <html lang="ja">
 
 <head>
-  <meta title="Phirosoft">
   <meta charset="UTF-8">
-  <title>Phirosoft</title>
+  <title>Phirosoft - プログラミング・ゲーム・Web開発ポートフォリオ</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2, minimal-ui">
-
+  
+  <!-- SEO基本メタデータ -->
+  <meta name="description" content="Phirosoftのプログラミング、ゲーム開発、Web開発プロジェクトを紹介するポートフォリオサイト。Vue.js、JavaScript、各種開発実績を掲載。">
+  <meta name="keywords" content="Phirosoft,プログラミング,ゲーム開発,Web開発,Vue.js,JavaScript,ポートフォリオ,開発実績,プログラマー">
+  <meta name="author" content="Phirosoft">
+  <meta name="theme-color" content="#ffffff">
+  
+  <!-- 正規化URL -->
+  <link rel="canonical" href="https://phirosoft.github.io/public/">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Phirosoft - プログラミング・ゲーム・Web開発ポートフォリオ">
+  <meta property="og:description" content="Phirosoftのプログラミング、ゲーム開発、Web開発プロジェクトを紹介するポートフォリオサイト。Vue.js、JavaScript、各種開発実績を掲載。">
+  <meta property="og:url" content="https://phirosoft.github.io/public/">
+  <meta property="og:image" content="https://phirosoft.github.io/public/assets/logo.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="Phirosoft">
+  <meta property="og:locale" content="ja_JP">
+  
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Phirosoft - プログラミング・ゲーム・Web開発ポートフォリオ">
+  <meta name="twitter:description" content="Phirosoftのプログラミング、ゲーム開発、Web開発プロジェクトを紹介するポートフォリオサイト。">
+  <meta name="twitter:image" content="https://phirosoft.github.io/public/assets/logo.png">
+  
+  <!-- ファビコン・アイコン -->
+  <link rel="icon" type="image/png" href="./assets/favicon.128.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon.128.png">
+  <link rel="icon" sizes="192x192" href="./assets/favicon.128.png">
+  
+  <!-- プリロード・DNS prefetch -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+  <link rel="preload" href="./assets/logo.png" as="image">
+  
+  <!-- スタイルシート -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-
-  <meta name="description" content="Phirosoftホームページ">
-  <meta name="keywords" content="Programming,game,web apps" />
-  <meta name="theme-color" content="#ffffff">
-  <link rel="icon" type="image/svg+xml" href="./assets/favicon.128.png" />
-  <link rel="apple-touch-icon" type="image/svg+xml" sizes="180x180" href="./assets/loading.svg">
-  <link rel="icon" type="image/svg+xml" sizes="192x192" href="./assets/loading.svg">
   <link rel="stylesheet" type="text/css" href="./styles/style.css?v=0">
   <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
@@ -23,6 +53,48 @@
 
   <meta name="google-site-verification" content="q19M_nLWQPxPG9Bd9K41Ir1_1YDdaC-mv6LP8aeNb6s" />
   <meta name="google-site-verification" content="sBojhN8we7eWUL99sTW--Z_AD2LWhkZrMwAo4vO7418" />
+
+  <!-- 構造化データ (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Phirosoft",
+    "url": "https://phirosoft.github.io/public/",
+    "image": "https://phirosoft.github.io/public/assets/logo.png",
+    "sameAs": [
+      "https://github.com/Phirosoft"
+    ],
+    "jobTitle": "Developer",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Phirosoft"
+    },
+    "knowsAbout": [
+      "Web Development",
+      "Game Development", 
+      "Vue.js",
+      "JavaScript",
+      "Programming"
+    ]
+  }
+  </script>
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Phirosoft",
+    "url": "https://phirosoft.github.io/public/",
+    "description": "Phirosoftのプログラミング、ゲーム開発、Web開発プロジェクトポートフォリオ",
+    "inLanguage": "ja",
+    "isAccessibleForFree": true,
+    "creator": {
+      "@type": "Person",
+      "name": "Phirosoft"
+    }
+  }
+  </script>
 
   <style>
     html body {
@@ -197,11 +269,11 @@
     <v-app>
       <v-overlay absolute :value="overlay" z-index="10" color="#FFFFFF">
       </v-overlay>
-      <v-app-bar app flat class="light-blue lighten-5">
-        <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-app-bar app flat class="light-blue lighten-5" role="banner">
+        <v-app-bar-nav-icon @click.stop="drawer = !drawer" aria-label="メニューを開く" aria-expanded="false" aria-controls="navigation-drawer"></v-app-bar-nav-icon>
         <v-spacer></v-spacer>
       </v-app-bar>
-      <v-navigation-drawer app v-model="drawer">
+      <v-navigation-drawer app v-model="drawer" id="navigation-drawer" role="navigation" aria-label="メインナビゲーション">
         <v-list nav>
           <div v-for="item,key in items">
             <router-link :to="item.to" style="text-decoration: none; color: inherit;">
@@ -216,25 +288,25 @@
           </div>
         </v-list>
       </v-navigation-drawer>
-      <v-main app>
+      <v-main app role="main">
         <v-container>
           <router-view></router-view>
         </v-container>
       </v-main>
-      <v-footer padless app class="light-blue lighten-5" align-with-title>
+      <v-footer padless app class="light-blue lighten-5" align-with-title role="contentinfo">
         <v-card-text class="px-0">
-          <v-btn class="mx-4" icon link href="https://twitter.com/Phiro1021" target="_blank">
+          <v-btn class="mx-4" icon link href="https://twitter.com/Phiro1021" target="_blank" aria-label="Twitterページを開く">
             <v-icon size="24px"> mdi-twitter </v-icon>
           </v-btn>
           <v-btn class="mx-4" icon link
             href="https://docs.google.com/forms/d/e/1FAIpQLSd8q-TwBhthRMhuBaDISSIC10cIFLYY6iyAo1GAh-m9E21dvg/viewform?usp=sf_link"
-            target="_blank">
+            target="_blank" aria-label="お問い合わせフォームを開く">
             <v-icon size="24px"> mdi-gmail </v-icon>
           </v-btn>
-          <v-btn class="mx-4" icon link href="https://atelierent.jp/" target="_blank">
+          <v-btn class="mx-4" icon link href="https://atelierent.jp/" target="_blank" aria-label="アトリエレント公式サイトを開く">
             <v-icon size="24px"> mdi-web </v-icon>
           </v-btn>
-          <v-btn class="mx-4" icon link href="https://youtube.com/@phirotube9236?si=xEZbYiFMy8TKO8Cn" target="_blank">
+          <v-btn class="mx-4" icon link href="https://youtube.com/@phirotube9236?si=xEZbYiFMy8TKO8Cn" target="_blank" aria-label="YouTubeチャンネルを開く">
             <v-icon size="24px"> mdi-youtube </v-icon>
           </v-btn>
           <v-btn class="mx-4" icon link href="https://www.lancers.jp/profile/phirosoft" target="_blank">
@@ -245,7 +317,7 @@
     </v-app>
   </div>
   <div id="splash">
-    <img id="logo" src="./assets/logo.png">
+    <img id="logo" src="./assets/logo.png" alt="Phirosoftロゴ">
   </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"

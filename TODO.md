@@ -16,6 +16,45 @@
   - 実績表示フォーマットの改善
   - プロジェクト画像・スクリーンショットの追加
 
+### 🔍 SEO対策・検索最適化
+
+- [x] **メタデータ強化（緊急）** ✅ 2025-08-09完了
+  - [x] Open Graph・Twitter Cards追加
+  - [x] title・description最適化
+  - [x] 構造化データ（JSON-LD）実装
+
+- [x] **サイトマップ・robots.txt作成** ✅ 2025-08-09完了
+  - [x] sitemap.xml生成
+  - [x] robots.txt設定
+  - [ ] Google Search Console登録
+
+- [x] **基本アクセシビリティ改善** ✅ 2025-08-09完了
+  - [x] 画像alt属性追加
+  - [x] セマンティックHTML（role属性）
+  - [x] ARIA属性追加
+
+- [ ] **パフォーマンス最適化**
+  - [ ] 画像最適化（WebP対応）
+  - [x] CDN読み込み最適化（プリロード追加済み）
+  - [ ] レスポンシブ画像実装
+
+### 🔄 継続的SEO改善
+
+- [ ] **Google Search Console設定・監視**
+  - [ ] Google Search Console登録
+  - [ ] Google Analytics設定
+  - [ ] Core Web Vitals監視
+
+- [ ] **コンテンツSEO最適化**
+  - [ ] 各ページの個別メタデータ設定
+  - [ ] 内部リンク構造の改善
+  - [ ] h1タグの最適化
+
+- [ ] **Vue.js SPA特有対策**
+  - [ ] 動的メタタグ更新実装
+  - [ ] ルーティング時のタイトル変更
+  - [ ] プリレンダリング検討
+
 ## 🚀 優先度中（Medium Priority）
 
 ### 📈 パフォーマンス改善

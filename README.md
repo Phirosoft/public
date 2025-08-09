@@ -19,6 +19,7 @@ Phirosoft公式ホームページ - Vue.js 2.x で構築されたシングルペ
 | **ルーティング** | Vue Router |
 | **HTTP通信** | Axios |
 | **デプロイ** | GitHub Pages (自動デプロイ) |
+| **SEO** | Open Graph, Twitter Cards, 構造化データ(JSON-LD) |
 
 ## 🚀 クイックスタート
 
@@ -39,9 +40,11 @@ npm run dev
 
 ```
 ├── docs/              # 🌐 GitHub Pages公開コンテンツ
-│   ├── index.html    # メインページ
+│   ├── index.html    # メインページ（SEO最適化済み）
 │   ├── main.js       # Vue.jsアプリケーション
 │   ├── templates.js  # Vueテンプレート
+│   ├── sitemap.xml   # 検索エンジン用サイトマップ
+│   ├── robots.txt    # クローラー制御ファイル
 │   └── assets/       # 静的アセット
 └── .github/          # 🔧 CI/CD設定
     └── workflows/    # GitHub Actions
@@ -63,6 +66,13 @@ npm run dev
 - ✅ **脆弱性**: 0個（2025年8月9日時点）
 - ✅ **Dependabot**: すべてのアラート解決済み
 - ✅ **依存関係**: 最新の安全なバージョンに更新済み
+
+### 🔍 SEO対策
+
+- ✅ **メタデータ最適化**: Open Graph、Twitter Cards実装済み
+- ✅ **構造化データ**: JSON-LDスキーママークアップ
+- ✅ **サイトマップ**: sitemap.xml、robots.txt配置済み
+- ✅ **アクセシビリティ**: ARIA属性、セマンティックHTML対応
 
 ## 🔗 関連文書・サポート
 
