@@ -22,6 +22,16 @@ html body {
     "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
 }
 
+/* Vuetify v-main コンポーネントのスタイル */
+.v-main.main-transparent {
+  background-color: transparent !important;
+}
+
+.v-main.main-semi-transparent {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(10px);
+}
+
 main {
   /* background-color: white; */
   /* background-image: url("../assets/logo.png"); */
@@ -71,5 +81,40 @@ i {
 
 v-card-text {
   size: 1em;
+}
+
+/* ポートフォリオページ専用スタイル */
+.portfolio-card {
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  cursor: pointer;
+  border-radius: 8px !important;
+}
+
+.portfolio-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+.portfolio-page .v-chip {
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.portfolio-page .text-caption {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.portfolio-page .v-card__title {
+  line-height: 1.2 !important;
+}
+
+.portfolio-page .v-img__content {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.6));
+}
+
+/* 統計カードのアニメーション */
+.portfolio-page .v-card--link:hover {
+  transform: scale(1.02);
+  transition: transform 0.2s ease-in-out;
 }
 

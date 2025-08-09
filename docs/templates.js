@@ -354,6 +354,333 @@ let templates = [
         alert('hoge');
       }
     },
+  },
+  {
+    name: 'portfolio-main',
+    template: null,
+    template_url: './component/portfolio.html',
+    props: ['id'],
+    data: function () {
+      return {
+        searchQuery: '',
+        selectedCategory: null,
+        selectedYear: null,
+        projectDialog: false,
+        selectedProject: null,
+        currentYear: new Date().getFullYear(),
+        startYear: 2018,
+        
+        // 直接プロパティとして追加（デバッグ用）
+        totalProjects: 0,
+        totalClients: 0,
+        totalTechnologies: 0,
+        filteredProjects: [],
+        years: [],
+        
+        categories: [
+          'Webアプリケーション',
+          'モバイルアプリ',
+          'デスクトップアプリ',
+          'システム開発',
+          'API開発',
+          'インフラ構築',
+          'その他'
+        ],
+        
+        projects: [
+          {
+            id: 1,
+            title: 'ぼくの自由研究所web',
+            category: 'Webアプリケーション',
+            description: '小学生向けの自由研究サポートナビゲータアプリ。研究テーマの提案から実験手順、まとめ方まで包括的にサポート。',
+            period: '2023年4月 - 2023年8月',
+            teamSize: 3,
+            role: 'フルスタック開発者',
+            client: 'atelierent',
+            image: './assets/logo.png',
+            demoUrl: 'https://kids-labo.atelierent.jp/',
+            githubUrl: '',
+            technologies: ['Vue.js', 'Node.js', 'Express', 'PostgreSQL', 'Azure App Service'],
+            details: `小学生の自由研究をサポートするWebアプリケーション。
+子どもたちが興味を持てる研究テーマの提案機能、段階的な実験ガイド、研究結果のまとめ方指導など、自由研究の全工程をサポートします。
+
+主な機能：
+- 年齢・興味に応じた研究テーマ提案
+- ステップバイステップの実験ガイド
+- 写真付きの実験記録機能
+- 研究レポート自動生成
+- 保護者向けサポート情報`,
+            achievements: [
+              'Vue.js 2.xを使ったSPA開発の経験習得',
+              'PostgreSQLを使ったデータベース設計・最適化',
+              'Azure App Serviceでの本格的なWebアプリ運用',
+              '子ども向けUIの設計・開発経験',
+              'ユーザビリティテストの実施と改善'
+            ]
+          },
+          {
+            id: 2,
+            title: '夢冒険',
+            category: 'Webアプリケーション',
+            description: '睡眠改善をゲーム化したWebアプリ。睡眠記録と習慣化をサポートし、良質な睡眠を促進。',
+            period: '2023年1月 - 2023年3月',
+            teamSize: 2,
+            role: 'バックエンド開発者',
+            client: 'atelierent',
+            image: './assets/logo.png',
+            demoUrl: 'https://dreamer.tokyo/',
+            githubUrl: '',
+            technologies: ['Node.js', 'Express', 'MongoDB', 'Chart.js', 'Bootstrap'],
+            details: `睡眠習慣の改善をゲーミフィケーションで支援するWebアプリケーション。
+ユーザーの睡眠データを記録・分析し、改善提案とモチベーション維持機能を提供します。
+
+主な機能：
+- 睡眠時間・質の記録機能
+- 睡眠パターンの可視化・分析
+- 改善アドバイスの自動提案
+- 習慣化を促すゲーム要素
+- 睡眠データのエクスポート機能`,
+            achievements: [
+              'MongoDBを使ったNoSQLデータベース設計',
+              'Chart.jsを使ったデータ可視化機能の実装',
+              'RESTful API設計の経験',
+              'ユーザー行動データの分析手法の習得',
+              'ゲーミフィケーション要素の設計・実装'
+            ]
+          },
+          {
+            id: 3,
+            title: 'Phirosoft Website',
+            category: 'Webアプリケーション',
+            description: '企業サイト・ポートフォリオサイト。Vue.js SPA、SEO最適化、GitHub Pages自動デプロイ実装。',
+            period: '2024年12月 - 2025年8月',
+            teamSize: 1,
+            role: 'フルスタック開発者',
+            client: '自社プロジェクト',
+            image: './assets/logo.png',
+            demoUrl: 'https://phirosoft.github.io/public/',
+            githubUrl: 'https://github.com/Phirosoft/public',
+            technologies: ['Vue.js 2.x', 'Vuetify', 'GitHub Pages', 'GitHub Actions', 'Lighthouse CI'],
+            details: `Phirosoftの企業サイト兼ポートフォリオサイト。
+SPAでありながらSEO最適化を実現し、CI/CDパイプラインを完備した現代的なWebサイト。
+
+主な機能：
+- レスポンシブデザインの企業サイト
+- 実績ポートフォリオ表示機能
+- お問い合わせフォーム統合
+- SEO最適化（Open Graph、構造化データ）
+- 自動デプロイ・品質管理`,
+            achievements: [
+              'Vue.js SPAでのSEO最適化手法の確立',
+              'GitHub Actions CI/CDパイプライン構築',
+              'Lighthouse CIを使った品質管理自動化',
+              'Creative Commons ライセンスの適用経験',
+              'アクセシビリティ対応の実装'
+            ]
+          },
+          {
+            id: 4,
+            title: '業務システム開発',
+            category: 'システム開発',
+            description: 'C#/.NET、Oracle/PostgreSQL/MySQLを使った業務システムの受託開発。要件定義から運用まで。',
+            period: '2018年 - 現在',
+            teamSize: '1-8',
+            role: 'システムエンジニア',
+            client: '複数クライアント',
+            image: './assets/logo.png',
+            demoUrl: '',
+            githubUrl: '',
+            technologies: ['C#', '.NET Framework', '.NET Core', 'Oracle', 'PostgreSQL', 'MySQL', 'Azure'],
+            details: `企業向け業務システムの受託開発プロジェクト。
+要件定義からシステム設計、開発、テスト、運用まで一貫して対応。
+
+対応業務：
+- 基幹業務システム開発
+- データベース設計・最適化
+- API開発・統合
+- クラウドインフラ構築
+- システム運用・保守`,
+            achievements: [
+              '複数のデータベースシステムでの開発経験',
+              'Microsoft Azureでのクラウドシステム構築',
+              '要件定義から運用まで一貫した開発経験',
+              'チームリーダーとしてのプロジェクト管理経験',
+              '様々な業界のビジネス要件への対応経験'
+            ]
+          },
+          {
+            id: 5,
+            title: 'Cloud Infrastructure Automation',
+            category: 'インフラ構築',
+            description: 'Azure DevOpsとTerraformを使ったクラウドインフラの自動化。CI/CDパイプライン構築とIaC実装。',
+            period: '2024年6月 - 2024年10月',
+            teamSize: 2,
+            role: 'DevOpsエンジニア',
+            client: '企業クライアント',
+            image: './assets/logo.png',
+            demoUrl: '',
+            githubUrl: '',
+            technologies: ['Azure DevOps', 'Terraform', 'Docker', 'Kubernetes', 'Azure Monitor'],
+            details: `企業のクラウドインフラ自動化プロジェクト。
+オンプレミスからクラウドへの移行を支援し、Infrastructure as Code (IaC) による効率的なインフラ管理を実現。
+
+実装内容：
+- Terraformによるインフラコード化
+- Azure DevOpsでのCI/CDパイプライン構築
+- Dockerコンテナ化とKubernetes運用
+- 監視・ログ管理システム構築
+- セキュリティポリシーの自動適用`,
+            achievements: [
+              'Infrastructure as Code (IaC) の実装経験',
+              'Azure DevOpsでのエンタープライズCI/CD構築',
+              'Kubernetesクラスター運用の経験',
+              'セキュリティ監査要件への対応',
+              'インフラコスト30%削減を実現'
+            ]
+          },
+          {
+            id: 6,
+            title: 'REST API & マイクロサービス',
+            category: 'API開発',
+            description: '.NET 6とDockerを使ったマイクロサービスアーキテクチャ。高可用性API設計・実装。',
+            period: '2024年2月 - 2024年5月',
+            teamSize: 4,
+            role: 'APIアーキテクト',
+            client: 'スタートアップ企業',
+            image: './assets/logo.png',
+            demoUrl: '',
+            githubUrl: '',
+            technologies: ['.NET 6', 'Docker', 'Redis', 'RabbitMQ', 'Swagger', 'Azure API Management'],
+            details: `スケーラブルなマイクロサービスアーキテクチャの設計・実装。
+高トラフィック対応とサービス間通信の最適化を実現。
+
+アーキテクチャ特徴：
+- RESTful API設計とOpenAPI仕様
+- Redis分散キャッシュシステム
+- RabbitMQメッセージキューイング
+- Docker Composeローカル開発環境
+- API Gateway による統合管理`,
+            achievements: [
+              'マイクロサービスアーキテクチャ設計の経験',
+              '.NET 6による高性能API開発',
+              'Redis分散キャッシュの実装',
+              'API Gateway設計・運用',
+              'レスポンス時間50ms以下を達成'
+            ]
+          }
+        ],
+        
+        // computed プロパティで参照される値の初期化
+        filteredProjectsData: [],
+        yearsData: [],
+        totalProjectsData: 0,
+        totalClientsData: 0,
+        totalTechnologiesData: 0
+      }
+    },
+    mounted() {
+      // データの初期化
+      this.updateComputedData();
+    },
+    watch: {
+      searchQuery() {
+        this.updateFilteredProjects();
+      },
+      selectedCategory() {
+        this.updateFilteredProjects();
+      },
+      selectedYear() {
+        this.updateFilteredProjects();
+      }
+    },
+    methods: {
+      updateComputedData() {
+        // プロジェクトデータの更新
+        this.totalProjects = this.projects ? this.projects.length : 0;
+        
+        // クライアント数の計算
+        if (this.projects && Array.isArray(this.projects)) {
+          const clients = new Set(this.projects.map(p => p.client).filter(c => c));
+          this.totalClients = clients.size;
+        } else {
+          this.totalClients = 0;
+        }
+        
+        // 技術数の計算
+        if (this.projects && Array.isArray(this.projects)) {
+          const technologies = new Set();
+          this.projects.forEach(project => {
+            if (project.technologies && Array.isArray(project.technologies)) {
+              project.technologies.forEach(tech => technologies.add(tech));
+            }
+          });
+          this.totalTechnologies = technologies.size;
+        } else {
+          this.totalTechnologies = 0;
+        }
+        
+        // 年度データの生成
+        const currentYear = new Date().getFullYear();
+        const years = [];
+        for (let year = 2018; year <= currentYear; year++) {
+          years.push(year);
+        }
+        this.years = years.reverse();
+        
+        // フィルタリング済みプロジェクトの初期化
+        this.updateFilteredProjects();
+      },
+      
+      updateFilteredProjects() {
+        if (!this.projects || !Array.isArray(this.projects)) {
+          this.filteredProjects = [];
+          return;
+        }
+        
+        let filtered = this.projects;
+        
+        // 検索クエリフィルタ
+        if (this.searchQuery) {
+          const query = this.searchQuery.toLowerCase();
+          filtered = filtered.filter(project => 
+            project.title.toLowerCase().includes(query) ||
+            project.description.toLowerCase().includes(query) ||
+            project.technologies.some(tech => tech.toLowerCase().includes(query)) ||
+            (project.client && project.client.toLowerCase().includes(query))
+          );
+        }
+        
+        // カテゴリフィルタ
+        if (this.selectedCategory) {
+          filtered = filtered.filter(project => project.category === this.selectedCategory);
+        }
+        
+        // 年度フィルタ
+        if (this.selectedYear) {
+          filtered = filtered.filter(project => project.period.includes(this.selectedYear.toString()));
+        }
+        
+        this.filteredProjects = filtered;
+      },
+      
+      openProjectDetail(project) {
+        this.selectedProject = project;
+        this.projectDialog = true;
+      },
+      
+      getCategoryColor(category) {
+        const colors = {
+          'Webアプリケーション': 'primary',
+          'モバイルアプリ': 'success',
+          'デスクトップアプリ': 'info',
+          'システム開発': 'warning',
+          'API開発': 'error',
+          'インフラ構築': 'purple',
+          'その他': 'grey'
+        };
+        return colors[category] || 'grey';
+      }
+    },
   }
 ];
 

@@ -24,6 +24,7 @@ const init = async () => {
   const routes = [
     { path: '/about', component: getTemplate('about-main').template, props: true, },
     { path: '/work', component: getTemplate('work-main').template, props: true },
+    { path: '/portfolio', component: getTemplate('portfolio-main').template, props: true },
     { path: '/game', component: getTemplate('game-main').template, props: true, },
     { path: '/tool', component: getTemplate('tool-main').template, props: true, },
     { path: '/movie', component: getTemplate('movie-main').template, props: true, },
@@ -46,6 +47,7 @@ const init = async () => {
         { to: "/blog", icon: "mdi-book-open-outline", text: "BLOG" },
         // { to: "/schedule", icon: "mdi-home-city-outline", text: "SCHEDUL" },
         { to: "/work", icon: "mdi-home-city-outline", text: "WORK" },
+        { to: "/portfolio", icon: "mdi-briefcase-outline", text: "PORTFOLIO" },
         { to: "/movie", icon: "mdi-video-vintage", text: "MOVIE" },
         { to: "/game", icon: "mdi-gamepad-variant-outline", text: "GAME" },
         { to: "/tool", icon: "mdi-toolbox-outline", text: "TOOL" },
@@ -63,6 +65,10 @@ const init = async () => {
       username() {
         // `params` が表示される
         return this.$route.params.username
+      },
+      isHomePage() {
+        // ルートパス（/）またはルート定義のないパスの場合はホームページとして扱う
+        return this.$route.path === '/' || !this.$route.matched.length
       }
     },
   }).$mount('#app')

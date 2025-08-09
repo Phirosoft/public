@@ -288,7 +288,7 @@
           </div>
         </v-list>
       </v-navigation-drawer>
-      <v-main app role="main">
+      <v-main app role="main" :class="{ 'main-transparent': isHomePage, 'main-semi-transparent': !isHomePage }">
         <v-container>
           <router-view></router-view>
         </v-container>
