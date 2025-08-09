@@ -1,7 +1,7 @@
 # Phirosoft Official Website
 
 [![Website](https://img.shields.io/website?url=https%3A//phirosoft.github.io/public)](https://phirosoft.github.io/public)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 [![Security](https://img.shields.io/badge/Security-Secure-green)](./DEVELOPMENT.md#セキュリティ)
 [![Dependencies](https://img.shields.io/badge/Dependencies-Up_to_Date-brightgreen)](#dependencies)
 
@@ -64,21 +64,29 @@ npm run dev
 - ✅ **Dependabot**: すべてのアラート解決済み
 - ✅ **依存関係**: 最新の安全なバージョンに更新済み
 
-## �🔗 関連文書
+## 🔗 関連文書
+
+- 📚 **開発ガイド**: [DEVELOPMENT.md](./DEVELOPMENT.md)
+- 🚀 **デプロイガイド**: [DEPLOYMENT.md](./DEPLOYMENT.md)
+- 📝 **TODOリスト**: [TODO.md](./TODO.md)
 
 ## 🤝 コントリビューション・サポート
 
 - 📚 **開発ガイド**: [DEVELOPMENT.md](./DEVELOPMENT.md)
 - 🚀 **デプロイガイド**: [DEPLOYMENT.md](./DEPLOYMENT.md)
-- 🐛 **バグ報告**: [GitHub Issues](https://github.com/phirosoft/public/issues)
-- 💡 **機能提案**: [GitHub Issues](https://github.com/phirosoft/public/issues)
+- 🐛 **バグ報告**: [お問い合わせフォーム](https://docs.google.com/forms/d/e/1FAIpQLSd8q-TwBhthRMhuBaDISSIC10cIFLYY6iyAo1GAh-m9E21dvg/viewform?usp=sf_link)
+- 💡 **機能提案**: [お問い合わせフォーム](https://docs.google.com/forms/d/e/1FAIpQLSd8q-TwBhthRMhuBaDISSIC10cIFLYY6iyAo1GAh-m9E21dvg/viewform?usp=sf_link)
 
 ## 📄 ライセンス
 
-[MIT License](./docs/LICENSE) - 自由に使用・改変・配布可能です。
+[CC BY-NC-ND 4.0](./docs/LICENSE) - 学習・研究目的での利用のみ許可。商用利用および改変・再配布は禁止されています。
+
+**利用条件:**
+- ✅ **学習・研究目的での閲覧**
+- ✅ **コード構造の研究**
+- ❌ **商用利用禁止**
+- ❌ **改変・再配布禁止**
 
 ---
 
-**⚠️ セキュリティ重要事項**: 現在 `docs/scripts/base.js` にハードコードされたパスワードが存在します。[DEVELOPMENT.md](./DEVELOPMENT.md#セキュリティ) を確認して修正してください。
-
-- 📧 その他のお問い合わせ: [Contact](https://phirosoft.github.io/public/#/about)
+- 📧 **お問い合わせ**: [お問い合わせフォーム](https://docs.google.com/forms/d/e/1FAIpQLSd8q-TwBhthRMhuBaDISSIC10cIFLYY6iyAo1GAh-m9E21dvg/viewform?usp=sf_link)
