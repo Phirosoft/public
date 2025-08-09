@@ -254,7 +254,7 @@ git push origin main
    - エラーがある場合はログを確認
 
 2. **サイト確認**
-   - `https://[username].github.io/[repository]` にアクセス
+   - `https://phirosoft.github.io/public` にアクセス
    - 全ページの動作確認
    - パフォーマンス確認
 
@@ -271,7 +271,7 @@ git push origin main
 
 ### 依存関係の状況
 
-- ✅ **脆弱性**: 0個（2025年1月9日時点）
+- ✅ **脆弱性**: 0個（2025年8月9日時点）
 - ✅ **Dependabot**: すべてのアラート解決済み
 - ✅ **パッケージ**: 最新の安全なバージョンに更新済み
 
@@ -448,10 +448,10 @@ const adminPassword = process.env.ADMIN_PASSWORD || '';
 
 ## 📞 サポート
 
-- 🐛 **デプロイ問題**: [GitHub Issues](https://github.com/phirosoft/public/issues)
+- 🐛 **デプロイ問題**: [お問い合わせフォーム](https://docs.google.com/forms/d/e/1FAIpQLSd8q-TwBhthRMhuBaDISSIC10cIFLYY6iyAo1GAh-m9E21dvg/viewform?usp=sf_link)
 - 📚 **GitHub Pages ドキュメント**: [公式ガイド](https://docs.github.com/pages)
 - 🚀 **GitHub Actions ドキュメント**: [公式ガイド](https://docs.github.com/actions)
 
 ---
 
-このガイドは実際のデプロイ経験を基に更新されます。問題が発生した場合は、Issue を作成してください。
+このガイドは実際のデプロイ経験を基に更新されます。問題が発生した場合は、お問い合わせフォームをご利用ください。

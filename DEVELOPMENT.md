@@ -28,7 +28,7 @@
 
 ### セキュリティ状況 🔒
 
-- ✅ **脆弱性**: 0個（2025年1月9日更新）
+- ✅ **脆弱性**: 0個（2025年8月9日更新）
 - ✅ **依存関係**: すべて最新の安全なバージョン
 - ✅ **Dependabot**: アラート解決済み
 
@@ -36,8 +36,8 @@
 
 ```bash
 # リポジトリのクローン
-git clone https://github.com/[username]/[repository].git
-cd [repository]
+git clone https://github.com/Phirosoft/public.git
+cd public
 
 # 依存関係のインストール
 npm install
@@ -372,10 +372,10 @@ git mergetool
 
 ## 📞 サポート・連絡先
 
-- 🐛 **バグ報告**: [GitHub Issues](https://github.com/phirosoft/public/issues)
-- 💡 **機能提案**: [GitHub Issues](https://github.com/phirosoft/public/issues)
-- 📧 **その他**: [プロジェクト連絡先](https://phirosoft.github.io/public/#/about)
+- 🐛 **バグ報告**: [お問い合わせフォーム](https://docs.google.com/forms/d/e/1FAIpQLSd8q-TwBhthRMhuBaDISSIC10cIFLYY6iyAo1GAh-m9E21dvg/viewform?usp=sf_link)
+- 💡 **機能提案**: [お問い合わせフォーム](https://docs.google.com/forms/d/e/1FAIpQLSd8q-TwBhthRMhuBaDISSIC10cIFLYY6iyAo1GAh-m9E21dvg/viewform?usp=sf_link)
+- 📧 **その他**: [お問い合わせフォーム](https://docs.google.com/forms/d/e/1FAIpQLSd8q-TwBhthRMhuBaDISSIC10cIFLYY6iyAo1GAh-m9E21dvg/viewform?usp=sf_link)
 
 ---
 
-このガイドは随時更新されます。最新情報は [GitHub Repository](https://github.com/phirosoft/public) をご確認ください。
+このガイドは随時更新されます。最新情報は [GitHub Repository](https://github.com/Phirosoft/public) をご確認ください。

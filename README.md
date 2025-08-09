@@ -60,20 +60,15 @@ npm run dev
 
 ### 🔒 セキュリティ状況
 
-- ✅ **脆弱性**: 0個（2025年1月9日時点）
+- ✅ **脆弱性**: 0個（2025年8月9日時点）
 - ✅ **Dependabot**: すべてのアラート解決済み
 - ✅ **依存関係**: 最新の安全なバージョンに更新済み
 
-## 🔗 関連文書
+## 🔗 関連文書・サポート
 
 - 📚 **開発ガイド**: [DEVELOPMENT.md](./DEVELOPMENT.md)
 - 🚀 **デプロイガイド**: [DEPLOYMENT.md](./DEPLOYMENT.md)
 - 📝 **TODOリスト**: [TODO.md](./TODO.md)
-
-## 🤝 コントリビューション・サポート
-
-- 📚 **開発ガイド**: [DEVELOPMENT.md](./DEVELOPMENT.md)
-- 🚀 **デプロイガイド**: [DEPLOYMENT.md](./DEPLOYMENT.md)
 - 🐛 **バグ報告**: [お問い合わせフォーム](https://docs.google.com/forms/d/e/1FAIpQLSd8q-TwBhthRMhuBaDISSIC10cIFLYY6iyAo1GAh-m9E21dvg/viewform?usp=sf_link)
 - 💡 **機能提案**: [お問い合わせフォーム](https://docs.google.com/forms/d/e/1FAIpQLSd8q-TwBhthRMhuBaDISSIC10cIFLYY6iyAo1GAh-m9E21dvg/viewform?usp=sf_link)
 
