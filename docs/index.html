@@ -15,6 +15,14 @@
   <!-- 正規化URL -->
   <link rel="canonical" href="https://phirosoft.github.io/public/">
   
+  <!-- PWA設定 -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1976d2">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Phirosoft">
+  <link rel="apple-touch-icon" href="assets/icon.144.png">
+  
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Phirosoft - プログラミング・ゲーム・Web開発ポートフォリオ">
@@ -333,5 +341,19 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="./templates.js" async></script>
 <script src="./main.js" async></script>
+
+<script>
+  // Service Worker登録
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('./sw.js')
+        .then(function(registration) {
+          console.log('SW: Registration successful with scope: ', registration.scope);
+        }, function(err) {
+          console.log('SW: Registration failed: ', err);
+        });
+    });
+  }
+</script>
 
 </html>

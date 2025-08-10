@@ -1,23 +1,21 @@
-name: 📊 Lighthouse Performance Monitoring
+name: � Lighthouse Performance Check
 
 on:
   push:
-    branches: [ main ]
-    paths:
-      - 'docs/**'
-      - '.github/workflows/lighthouse.yml'
+    branches: [main, develop]
   pull_request:
-    branches: [ main ]
-    paths:
-      - 'docs/**'
-      - '.github/workflows/lighthouse.yml'
+    branches: [main]
   schedule:
-    # 毎日午前9時（JST）に実行してパフォーマンスを監視
+    # 毎日 JST 9:00 (UTC 0:00) に実行
     - cron: '0 0 * * *'
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: '18'
 
 jobs:
   lighthouse-check:
-    name: 🏃‍♂️ Lighthouse CI
+    name: 🔍 Lighthouse CI
     runs-on: ubuntu-latest
 
     steps:
@@ -33,20 +31,42 @@ jobs:
     - name: Install dependencies
       run: |
         npm ci
-        npm install -g @lhci/cli@0.12.x
+        # Lighthouseは@lhci/cliに含まれているため、個別インストール不要
 
     - name: Start development server
       run: |
         npm run dev &
+        SERVER_PID=$!
+        echo "SERVER_PID=$SERVER_PID" >> $GITHUB_ENV
+        
+        # サーバーが起動するまで最大60秒待機
         echo "Waiting for server to start..."
-        sleep 15
-        # サーバーが起動したか確認
-        curl -f http://localhost:8080 || (echo "Server failed to start" && exit 1)
+        for i in {1..12}; do
+          if curl -f http://localhost:8080 > /dev/null 2>&1; then
+            echo "✅ Server is ready!"
+            break
+          fi
+          echo "Attempt $i/12: Server not ready, waiting 5 seconds..."
+          sleep 5
+        done
+        
+        # 最終確認
+        if ! curl -f http://localhost:8080 > /dev/null 2>&1; then
+          echo "❌ Server failed to start"
+          exit 1
+        fi
 
     - name: Run Lighthouse CI
-      run: lhci autorun
       env:
         LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+      run: npx lhci autorun
+
+    - name: Stop development server
+      if: always()
+      run: |
+        if [ ! -z "$SERVER_PID" ]; then
+          kill $SERVER_PID || true
+        fi
 
     - name: Upload Lighthouse results
       uses: actions/upload-artifact@v4
@@ -72,22 +92,31 @@ jobs:
         cache: 'npm'
 
     - name: Install dependencies
-      run: |
-        npm ci
-        npm install -g lighthouse@latest
+      run: npm ci
 
     - name: Start development server
       run: |
         npm run dev &
-        sleep 15
+        SERVER_PID=$!
+        echo "SERVER_PID=$SERVER_PID" >> $GITHUB_ENV
+        
+        # サーバー起動を待機
+        for i in {1..12}; do
+          if curl -f http://localhost:8080 > /dev/null 2>&1; then
+            echo "✅ Server is ready!"
+            break
+          fi
+          echo "Attempt $i/12: Server not ready, waiting 5 seconds..."
+          sleep 5
+        done
 
     - name: Run Lighthouse (Desktop)
       run: |
-        lighthouse http://localhost:8080 \
+        npx lighthouse http://localhost:8080 \
           --preset=desktop \
           --output=json,html \
           --output-path=./lighthouse-desktop \
-          --chrome-flags="--headless --no-sandbox" \
+          --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage" \
           --quiet
 
     - name: Parse Lighthouse scores
@@ -96,18 +125,25 @@ jobs:
         echo "| Category | Score |" >> $GITHUB_STEP_SUMMARY
         echo "|----------|-------|" >> $GITHUB_STEP_SUMMARY
         
-        # JSONファイルからスコアを抽出
-        performance=$(jq '.categories.performance.score * 100' lighthouse-desktop.report.json)
-        accessibility=$(jq '.categories.accessibility.score * 100' lighthouse-desktop.report.json)
-        best_practices=$(jq '.categories["best-practices"].score * 100' lighthouse-desktop.report.json)
-        seo=$(jq '.categories.seo.score * 100' lighthouse-desktop.report.json)
-        pwa=$(jq '.categories.pwa.score * 100' lighthouse-desktop.report.json)
+        # JSONファイルからスコアを抽出（null値に対応）
+        performance=$(jq -r '.categories.performance.score // 0 | . * 100 | floor' lighthouse-desktop.report.json)
+        accessibility=$(jq -r '.categories.accessibility.score // 0 | . * 100 | floor' lighthouse-desktop.report.json)
+        best_practices=$(jq -r '.categories["best-practices"].score // 0 | . * 100 | floor' lighthouse-desktop.report.json)
+        seo=$(jq -r '.categories.seo.score // 0 | . * 100 | floor' lighthouse-desktop.report.json)
+        pwa=$(jq -r '.categories.pwa.score // 0 | . * 100 | floor' lighthouse-desktop.report.json)
         
         echo "| Performance | ${performance}% |" >> $GITHUB_STEP_SUMMARY
         echo "| Accessibility | ${accessibility}% |" >> $GITHUB_STEP_SUMMARY
         echo "| Best Practices | ${best_practices}% |" >> $GITHUB_STEP_SUMMARY
         echo "| SEO | ${seo}% |" >> $GITHUB_STEP_SUMMARY
         echo "| PWA | ${pwa}% |" >> $GITHUB_STEP_SUMMARY
+
+    - name: Stop development server
+      if: always()
+      run: |
+        if [ ! -z "$SERVER_PID" ]; then
+          kill $SERVER_PID || true
+        fi
 
     - name: Upload Desktop results
       uses: actions/upload-artifact@v4
@@ -130,22 +166,31 @@ jobs:
         cache: 'npm'
 
     - name: Install dependencies
-      run: |
-        npm ci
-        npm install -g lighthouse@latest
+      run: npm ci
 
     - name: Start development server
       run: |
         npm run dev &
-        sleep 15
+        SERVER_PID=$!
+        echo "SERVER_PID=$SERVER_PID" >> $GITHUB_ENV
+        
+        # サーバー起動を待機
+        for i in {1..12}; do
+          if curl -f http://localhost:8080 > /dev/null 2>&1; then
+            echo "✅ Server is ready!"
+            break
+          fi
+          echo "Attempt $i/12: Server not ready, waiting 5 seconds..."
+          sleep 5
+        done
 
     - name: Run Lighthouse (Mobile)
       run: |
-        lighthouse http://localhost:8080 \
+        npx lighthouse http://localhost:8080 \
           --preset=perf \
           --output=json,html \
           --output-path=./lighthouse-mobile \
-          --chrome-flags="--headless --no-sandbox" \
+          --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage" \
           --quiet
 
     - name: Parse Mobile scores
@@ -154,17 +199,24 @@ jobs:
         echo "| Category | Score |" >> $GITHUB_STEP_SUMMARY
         echo "|----------|-------|" >> $GITHUB_STEP_SUMMARY
         
-        performance=$(jq '.categories.performance.score * 100' lighthouse-mobile.report.json)
-        accessibility=$(jq '.categories.accessibility.score * 100' lighthouse-mobile.report.json)
-        best_practices=$(jq '.categories["best-practices"].score * 100' lighthouse-mobile.report.json)
-        seo=$(jq '.categories.seo.score * 100' lighthouse-mobile.report.json)
-        pwa=$(jq '.categories.pwa.score * 100' lighthouse-mobile.report.json)
+        performance=$(jq -r '.categories.performance.score // 0 | . * 100 | floor' lighthouse-mobile.report.json)
+        accessibility=$(jq -r '.categories.accessibility.score // 0 | . * 100 | floor' lighthouse-mobile.report.json)
+        best_practices=$(jq -r '.categories["best-practices"].score // 0 | . * 100 | floor' lighthouse-mobile.report.json)
+        seo=$(jq -r '.categories.seo.score // 0 | . * 100 | floor' lighthouse-mobile.report.json)
+        pwa=$(jq -r '.categories.pwa.score // 0 | . * 100 | floor' lighthouse-mobile.report.json)
         
         echo "| Performance | ${performance}% |" >> $GITHUB_STEP_SUMMARY
         echo "| Accessibility | ${accessibility}% |" >> $GITHUB_STEP_SUMMARY
         echo "| Best Practices | ${best_practices}% |" >> $GITHUB_STEP_SUMMARY
         echo "| SEO | ${seo}% |" >> $GITHUB_STEP_SUMMARY
         echo "| PWA | ${pwa}% |" >> $GITHUB_STEP_SUMMARY
+
+    - name: Stop development server
+      if: always()
+      run: |
+        if [ ! -z "$SERVER_PID" ]; then
+          kill $SERVER_PID || true
+        fi
 
     - name: Upload Mobile results
       uses: actions/upload-artifact@v4
@@ -204,7 +256,7 @@ jobs:
 
     - name: Create issue on performance regression
       if: failure()
-      uses: actions/github-script@v6
+      uses: actions/github-script@v7
       with:
         script: |
           const title = `🚨 Performance Regression Detected - ${new Date().toISOString().split('T')[0]}`;
