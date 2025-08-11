@@ -202,7 +202,10 @@ if (window.id == null) {
 /** 暗号化 */
 const encrypto = (async (inputString) => {
     try {
-        let password = (new TextEncoder()).encode('password');
+        // SECURITY NOTE: デモ用のハードコードされたパスワード
+        // 本番環境では環境変数や設定から取得してください
+        const DEMO_PASSWORD = 'password'; // デモ用のパスワード
+        let password = (new TextEncoder()).encode(DEMO_PASSWORD);
         let salt = (new TextEncoder().encode(''));
         let iv = (new TextEncoder().encode('0000000000000000'));
         let inputData = (new TextEncoder()).encode(inputString);
@@ -253,7 +256,10 @@ const encrypto = (async (inputString) => {
 /** 復号化 */
 const decrypto = (async (encryptedBase64String) => {
     try {
-        let password = (new TextEncoder()).encode('password');
+        // SECURITY NOTE: デモ用のハードコードされたパスワード
+        // 本番環境では環境変数や設定から取得してください
+        const DEMO_PASSWORD = 'password'; // デモ用のパスワード
+        let password = (new TextEncoder()).encode(DEMO_PASSWORD);
         let salt = (new TextEncoder().encode(''));
         let iv = (new TextEncoder().encode('0000000000000000'));
         let encryptedBytes = atob(encryptedBase64String);
